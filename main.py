@@ -214,26 +214,26 @@ print(Sec_Glukhova_3)
 #линейный способ
 from sympy import *
 k, T, C, L = symbols('k T C L') #что это? - создаёт символьные переменные с именами k, T, C, L.
-C_ost = 30000
+C_ost = 40000
 Am_lst =[]
 C_ost_lst=[]
-for i in range(9):
+for i in range(10):
   Am = (C-L)/T
-  C_ost -= Am.subs({C:30000, T:9, L:0})
-  Am_lst.append(round(Am.subs({C: 30000, T:9, L:0}),2))
+  C_ost -= Am.subs({C:40000, T:10, L:0})
+  Am_lst.append(round(Am.subs({C: 40000, T:10, L:0}),2))
   C_ost_lst.append(round(C_ost, 2))
 print('Am_lst:', Am_lst)
 print('C_ost_lst:', C_ost_lst)
 
 #способ уменьшаемого остатка
 Aj=0
-C_ost = 30000
+C_ost = 40000
 Am_lst_2=[]
 C_ost_lst_2=[]
-for i in range(7):
+for i in range(9):
   Am = k*1/T*(C - Aj)
-  C_ost -= Am.subs({C:30000, T:7, k:2}) #что это? - формула ежегодного уменьшения остаточной стоимости основного средства на сумму начисленной амортизации.
-  Am_lst_2.append(round(Am.subs({C:30000, T:9, k:2}), 2))
+  C_ost -= Am.subs({C:40000, T:10, k:2}) #что это? - формула ежегодного уменьшения остаточной стоимости основного средства на сумму начисленной амортизации.
+  Am_lst_2.append(round(Am.subs({C:40000, T:10, k:2}), 2))
   Aj += Am 
   C_ost_lst_2.append(round(C_ost,2))
 print('Am_lst_2:', Am_lst_2)
@@ -241,7 +241,7 @@ print('C_ost_lst_2:', C_ost_lst_2)
 
 #Контейнер табличного вывода
 import pandas as pd
-Y = range(1, 8)
+Y = range(1, 11)
 table1 = list(zip(Y, C_ost_lst, Am_lst)) #что это? - создаёт список кортежей, где каждый кортеж содержит значения из соответствующих списков Y, C_ost_lst и Am_lst.
 table2 = list(zip(Y, C_ost_lst_2, Am_lst_2))
 tfame = pd.DataFrame(table1, columns = ['Y', 'C_ost_lst', 'Am_lst'])
